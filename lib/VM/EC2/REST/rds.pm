@@ -8,7 +8,7 @@ VM::EC2::Dispatch->register(
     DescribeDBInstances  => sub {
         VM::EC2::Dispatch::load_module('VM::EC2::RDS::Instance');
         my ($xml, $ec2) = @_;
-        my $instances   = $xml->{DescribeDBInstancesResult}{Instances};
+        my $instances   = $xml->{DescribeDBInstancesResult}{DBInstances};
         return map {
                 VM::EC2::RDS::Instance->new($_, $ec2)
             } @$instances;
